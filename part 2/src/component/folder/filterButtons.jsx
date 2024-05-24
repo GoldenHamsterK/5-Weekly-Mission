@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const CardList = () => {
   const [folderData, setforderData] = useState({ folders: {} });
-  const [modalAddFolder, setModalAddFolder] = useState(false);
+  const [canModalAddFolder, setCanModalAddFolder] = useState(false);
 
   useEffect(() => {
     const resData = async () => {
@@ -21,7 +21,7 @@ const CardList = () => {
   }, []);
 
   const showModalAddFolder = () => {
-    setModalAddFolder(true);
+    setCanModalAddFolder(true);
   };
 
   const filterButtons = Object.entries(folderData).map(([key, value]) => (
@@ -37,21 +37,17 @@ const CardList = () => {
         폴더추가
         <img src={addIcon} alt="addIcon" />
       </button>
-      {modalAddFolder && (
-          <Modal
-            setModal={setModalAddFolder}
-            title={"폴더 추가"}
-            mid={
-              <input
-                className="modalInput"
-                type="text"
-                placeholder={"내용 입력"}
-              ></input>
-            }
-            btnname={"추가하기"}
-            btnColor={"modalBtn"}
-          />
-        )}
+      {canModalAddFolder && (
+        <Modal
+          setModal={setCanModalAddFolder}
+          title="폴더 추가"
+          content={
+            <input className="modalInput" type="text" placeholder="내용 입력" />
+          }
+          btnName="추가하기"
+          btnColor="modalBtn"
+        />
+      )}
     </section>
   );
 };

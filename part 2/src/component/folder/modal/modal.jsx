@@ -2,7 +2,7 @@ import "./modal.css"
 
 import closeIcon from "../../../icon/_close.svg";
 
-const Modal = ({ setModal, title, mid, placeholder, btnname, btnColor  }) => {
+const Modal = ({ setModal, title, content, placeholder, btnname, btnColor  }) => {
   const closeModal = () => {
     setModal(false);
   };
@@ -11,7 +11,7 @@ const Modal = ({ setModal, title, mid, placeholder, btnname, btnColor  }) => {
     <section className="modalBack"onClick={closeModal}>
       <div className="modal">
         <div className="modalTitle">{title}</div>
-        {mid}
+        {content}
         <button className={btnColor}>{btnname}</button>
         <button className="modalClose" onClick={closeModal}>
           <img src={closeIcon} alt="closeIcon" />

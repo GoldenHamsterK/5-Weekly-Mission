@@ -6,15 +6,15 @@ import Modal from "./modal/modal";
 import { useState } from "react";
 
 const ToolBar = () => {
-  const [modalEdit, setModalEdit] = useState(false);
-  const [modalDel, setModalDel] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDelModalOpen, setIsDelModalOpen] = useState(false);
 
   const showModalEdit = () => {
-    setModalEdit(true);
+    setIsEditModalOpen(true);
   };
 
   const showModalDel = () => {
-    setModalDel(true);
+    setIsDelModalOpen(true);
   };
 
   return (
@@ -29,11 +29,11 @@ const ToolBar = () => {
           <img src={penIcon} alt="penIcon" />
           이름 변경
         </button>
-        {modalEdit && (
+        {isEditModalOpen && (
           <Modal
-            setModal={setModalEdit}
+            setModal={setIsEditModalOpen}
             title={"폴더 이름 변경"}
-            mid={
+            content={
               <input
                 className="modalInput"
                 type="text"
@@ -48,11 +48,11 @@ const ToolBar = () => {
           <img src={deleteIcon} alt="deleteIcon" />
           삭제
         </button>
-        {modalDel && (
+        {isDelModalOpen && (
           <Modal
-            setModal={setModalDel}
+            setModal={setIsDelModalOpen}
             title={"폴더 삭제"}
-            mid={<div className="modaltext">폴더명</div>}
+            content={<div className="modaltext">폴더명</div>}
             btnname={"삭제하기"}
             btnColor={"modalBtnDel"}
           />

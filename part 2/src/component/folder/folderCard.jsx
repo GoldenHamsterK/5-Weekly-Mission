@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const FolderCard = ({ date, title, url, img }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalDelLink, setModalDelLink] = useState(false);
+  const [isDelLinkModalOpen, setIsDelLinkModalOpen] = useState(false);
 
   const displayedAt = (date) => {
     const milliSeconds = new Date() - new Date(date);
@@ -39,7 +39,7 @@ const FolderCard = ({ date, title, url, img }) => {
   };
 
   const showModalDelLink = () => {
-    setModalDelLink(true);
+    setIsDelLinkModalOpen(true);
   };
 
   return (
@@ -58,19 +58,19 @@ const FolderCard = ({ date, title, url, img }) => {
           </div>
           {isOpen && (
             <ul className="dropdownContent">
-              <li onClick={showModalDelLink} href="#">
+              <li onClick={showModalDelLink}>
                 삭제하기
               </li>
-              {modalDelLink && (
+              {isDelLinkModalOpen && (
                 <Modal
-                  setModal={setModalDelLink}
+                  setModal={setIsDelLinkModalOpen}
                   title={"링크 삭제"}
-                  mid={<div className="modaltext">httpw://www.abc.com</div>}
+                  content={<div className="modaltext">httpw://www.abc.com</div>}
                   btnname={"삭제하기"}
                   btnColor={"modalBtnDel"}
                 />
               )}
-              <li href="#">폴더에 추가</li>
+              <li>폴더에 추가</li>
             </ul>
           )}
         </div>
